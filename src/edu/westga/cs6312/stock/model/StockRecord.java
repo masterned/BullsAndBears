@@ -49,6 +49,7 @@ public class StockRecord {
 		if (newDate == null) {
 			throw new IllegalArgumentException("Invalid date: date cannot be null");
 		}
+
 		if (newOpeningPrice <= 0) {
 			throw new IllegalArgumentException("Invalid opening price: must be greater than zero");
 		}
@@ -82,6 +83,24 @@ public class StockRecord {
 		this.closingPrice = newClosingPrice;
 		this.adjustedClosingPrice = newAdjustedClosingPrice;
 		this.volume = newVolume;
+	}
+
+	/**
+	 * Accesses the StockRecord's date
+	 * 
+	 * @return the StockRecord's date
+	 */
+	public LocalDate getDate() {
+		return this.date;
+	}
+
+	/**
+	 * Changes the StockRecord's date to the given value
+	 * 
+	 * @param date - the new date
+	 */
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 	/**
