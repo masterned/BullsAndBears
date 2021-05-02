@@ -129,6 +129,29 @@ public class StockRecord {
 	}
 
 	/**
+	 * Accesses the StockRecord's high price
+	 * 
+	 * @return the StockRecord's high price
+	 */
+	public double getHighPrice() {
+		return this.highPrice;
+	}
+
+	/**
+	 * Changes the StockRecord's high price to the given value
+	 * 
+	 * @param newHighPrice - the new high price
+	 */
+	public void setHighPrice(double newHighPrice) {
+		if (newHighPrice < this.openingPrice || newHighPrice < this.lowPrice || newHighPrice < this.closingPrice
+				|| newHighPrice < this.adjustedClosingPrice) {
+			throw new IllegalArgumentException("Invalid high price: must be greater than all other prices");
+		}
+
+		this.highPrice = newHighPrice;
+	}
+
+	/**
 	 * Returns a String containing all of the instance variables of the StockRecord.
 	 * 
 	 * I decided to shorten the length of the line by following the phraseology used
