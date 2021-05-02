@@ -116,6 +116,10 @@ public class StockRecord {
 	 * Changes the StockRecord's opening price to the given value
 	 * 
 	 * @param newOpeningPrice - the new opening price
+	 * @precondition newOpeningPrice is greater than or equal to lowPrice and less
+	 *               than or equal to highPrice
+	 * @throws IllegalArgumentException if newOpeningPrice is less than lowPrice or
+	 *                                  greater than highPrice
 	 */
 	public void setOpeningPrice(double newOpeningPrice) {
 		if (newOpeningPrice > this.highPrice) {
@@ -141,6 +145,8 @@ public class StockRecord {
 	 * Changes the StockRecord's high price to the given value
 	 * 
 	 * @param newHighPrice - the new high price
+	 * @precondition newHighPrice is greater than all other prices
+	 * @throws IllegalArgumentException if newHighPrice is less than any other price
 	 */
 	public void setHighPrice(double newHighPrice) {
 		if (newHighPrice < this.openingPrice || newHighPrice < this.lowPrice || newHighPrice < this.closingPrice
@@ -165,8 +171,8 @@ public class StockRecord {
 	 * 
 	 * @param newLowPrice - the new low price
 	 * @precondition newLowPrice is lesser than all other prices
-	 * @throws IllegalArgumentException if newLowPrice is greater than any of the
-	 *                                  other prices
+	 * @throws IllegalArgumentException if newLowPrice is greater than any other
+	 *                                  price
 	 */
 	public void setLowPrice(double newLowPrice) {
 		if (newLowPrice > this.openingPrice || newLowPrice > this.highPrice || newLowPrice > this.closingPrice
