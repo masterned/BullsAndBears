@@ -152,6 +152,31 @@ public class StockRecord {
 	}
 
 	/**
+	 * Accesses the StockRecord's low price
+	 * 
+	 * @return the StockRecord's low price
+	 */
+	public double getLowPrice() {
+		return this.lowPrice;
+	}
+
+	/**
+	 * Changes the StockRecord's low price to the given value
+	 * 
+	 * @param newLowPrice - the new low price
+	 * @precondition newLowPrice is lesser than all other prices
+	 * @throws IllegalArgumentException if newLowPrice is greater than any of the
+	 *                                  other prices
+	 */
+	public void setLowPrice(double newLowPrice) {
+		if (newLowPrice > this.openingPrice || newLowPrice > this.highPrice || newLowPrice > this.closingPrice
+				|| newLowPrice > this.adjustedClosingPrice) {
+			throw new IllegalArgumentException("Invalid low price: must be lesser than all other prices");
+		}
+		this.lowPrice = newLowPrice;
+	}
+
+	/**
 	 * Returns a String containing all of the instance variables of the StockRecord.
 	 * 
 	 * I decided to shorten the length of the line by following the phraseology used
