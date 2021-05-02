@@ -22,7 +22,7 @@ public class StockRecordWhenSetOpeningPrice {
 	 * given value.
 	 */
 	@Test
-	public void setOpeningPriceShouldChangeDateToGivenValue() {
+	public void setOpeningPriceShouldChangeOpeningPriceToGivenValue() {
 		StockRecord testStockRecord = new StockRecord(LocalDate.parse("2020-05-07"), 19468.519531, 19720.869141,
 				19448.929688, 19674.769531, 19674.769531, 82900000);
 
