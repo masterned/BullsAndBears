@@ -241,6 +241,24 @@ public class StockRecord {
 	}
 
 	/**
+	 * Accesses the StockRecord's volume
+	 * 
+	 * @return the StockRecord's volume
+	 */
+	public int getVolume() {
+		return this.volume;
+	}
+
+	/**
+	 * Changes the StockRecord's volume to the given value
+	 * 
+	 * @param volume - the new volume
+	 */
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
+
+	/**
 	 * Returns a String containing all of the instance variables of the StockRecord.
 	 * 
 	 * I decided to shorten the length of the line by following the phraseology used
