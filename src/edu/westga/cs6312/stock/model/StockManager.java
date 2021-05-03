@@ -37,8 +37,14 @@ public class StockManager {
 	 * of daily StockRecords.
 	 * 
 	 * @return summaryList
+	 * @precondition dailyStockRecords has at least one record
+	 * @throws IllegalStateException if dailyStockRecords is empty
 	 */
 	public ArrayList<StockRecord> getSummaryData() {
+		if (this.dailyStockRecords.size() < 1) {
+			throw new IllegalStateException("Cannot obtain summary data on empty list");
+		}
+
 		ArrayList<StockRecord> summaryList = new ArrayList<StockRecord>();
 		summaryList.add(this.dailyStockRecords.get(0));
 		summaryList.add(this.dailyStockRecords.get(this.dailyStockRecords.size() / 2));
@@ -50,8 +56,14 @@ public class StockManager {
 	 * Calculates and returns the maximum, minimum, and average closing prices.
 	 * 
 	 * @return an array containing the maximum, minimum, and average closing prices
+	 * @precondition dailyStockRecords has at least one record
+	 * @throws IllegalStateException if dailyStockRecords is empty
 	 */
 	public double[] getStatisticalData() {
+		if (this.dailyStockRecords.size() < 1) {
+			throw new IllegalStateException("Cannot obtain statistical data on empty list");
+		}
+
 		double[] statisticalData = { this.getMaximumClosingPrice(), this.getMinimumClosingPrice(),
 				this.getAverageClosingPrice() };
 		return statisticalData;
