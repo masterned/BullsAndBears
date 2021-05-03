@@ -33,48 +33,62 @@ public class StockManager {
 	}
 
 	/**
-	 * Returns a list containing the first, middle, and last StockRecord in the list
-	 * of daily StockRecords.
+	 * Gets the first StockRecord in the list of StockRecords
 	 * 
-	 * @return summaryList
+	 * @return first StockRecord
 	 * @precondition dailyStockRecords has at least one record
 	 * @throws IllegalStateException if dailyStockRecords is empty
 	 */
-	public ArrayList<StockRecord> getSummaryData() {
+	public StockRecord getFirstStockRecord() {
 		if (this.dailyStockRecords.size() < 1) {
-			throw new IllegalStateException("Cannot obtain summary data on empty list");
+			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
 		}
-
-		ArrayList<StockRecord> summaryList = new ArrayList<StockRecord>();
-		summaryList.add(this.dailyStockRecords.get(0));
-		summaryList.add(this.dailyStockRecords.get(this.dailyStockRecords.size() / 2));
-		summaryList.add(this.dailyStockRecords.get(this.dailyStockRecords.size() - 1));
-		return summaryList;
+		
+		return this.dailyStockRecords.get(0);
 	}
-
+	
 	/**
-	 * Calculates and returns the maximum, minimum, and average closing prices.
+	 * Gets the middle StockRecord in the list of StockRecords
 	 * 
-	 * @return an array containing the maximum, minimum, and average closing prices
+	 * @return first StockRecord
 	 * @precondition dailyStockRecords has at least one record
 	 * @throws IllegalStateException if dailyStockRecords is empty
 	 */
-	public double[] getStatisticalData() {
+	public StockRecord getMiddleStockRecord() {
 		if (this.dailyStockRecords.size() < 1) {
-			throw new IllegalStateException("Cannot obtain statistical data on empty list");
+			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
 		}
-
-		double[] statisticalData = { this.getMaximumClosingPrice(), this.getMinimumClosingPrice(),
-				this.getAverageClosingPrice() };
-		return statisticalData;
+		
+		return this.dailyStockRecords.get(this.dailyStockRecords.size() / 2);
+	}
+	
+	/**
+	 * Gets the last StockRecord in the list of StockRecords
+	 * 
+	 * @return first StockRecord
+	 * @precondition dailyStockRecords has at least one record
+	 * @throws IllegalStateException if dailyStockRecords is empty
+	 */
+	public StockRecord getLastStockRecord() {
+		if (this.dailyStockRecords.size() < 1) {
+			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
+		}
+		
+		return this.dailyStockRecords.get(this.dailyStockRecords.size() - 1);
 	}
 
 	/**
 	 * Finds the highest closing price in the list of daily StockRecords.
 	 * 
 	 * @return maximumClosingPrice
+	 * @precondition dailyStockRecords has at least one record
+	 * @throws IllegalStateException if dailyStockRecords is empty
 	 */
-	private double getMaximumClosingPrice() {
+	public double getMaximumClosingPrice() {
+		if (this.dailyStockRecords.size() < 1) {
+			throw new IllegalStateException("Cannot obtain maximum closing price on empty list");
+		}
+
 		double maximumClosingPrice = this.dailyStockRecords.get(0).getClosingPrice();
 		for (StockRecord currentStockRecord : this.dailyStockRecords) {
 			double currentClosingPrice = currentStockRecord.getClosingPrice();
@@ -89,8 +103,14 @@ public class StockManager {
 	 * Finds the lowest closing price in the list of daily StockRecords.
 	 * 
 	 * @return minimumClosingPrice
+	 * @precondition dailyStockRecords has at least one record
+	 * @throws IllegalStateException if dailyStockRecords is empty
 	 */
-	private double getMinimumClosingPrice() {
+	public double getMinimumClosingPrice() {
+		if (this.dailyStockRecords.size() < 1) {
+			throw new IllegalStateException("Cannot obtain minimum closing price on empty list");
+		}
+
 		double minimumClosingPrice = this.dailyStockRecords.get(0).getClosingPrice();
 		for (StockRecord currentStockRecord : this.dailyStockRecords) {
 			double currentClosingPrice = currentStockRecord.getClosingPrice();
@@ -105,8 +125,14 @@ public class StockManager {
 	 * Finds the average closing price in the list of daily StockRecords.
 	 * 
 	 * @return averageClosingPrice
+	 * @precondition dailyStockRecords has at least one record
+	 * @throws IllegalStateException if dailyStockRecords is empty
 	 */
-	private double getAverageClosingPrice() {
+	public double getAverageClosingPrice() {
+		if (this.dailyStockRecords.size() < 1) {
+			throw new IllegalStateException("Cannot obtain average closing price on empty list");
+		}
+
 		double totalClosingPrice = 0.0;
 		for (StockRecord currentStockRecord : this.dailyStockRecords) {
 			totalClosingPrice += currentStockRecord.getClosingPrice();
