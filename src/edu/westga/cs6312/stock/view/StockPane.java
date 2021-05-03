@@ -198,13 +198,24 @@ public class StockPane extends Pane {
 			currentStockRecordMarker.setStroke(Color.RED);
 			currentStockRecordMarker.setFill(Color.RED);
 
-			currentStockRecordMarker.centerXProperty().bind(this.widthProperty().divide(2));
+			double dayRatio = this.getDayRatio(currentStockRecord.getDate());
+			if (dayRatio < 0.5) {				
+				currentStockRecordMarker.centerXProperty().bind(this.widthProperty().multiply(dayRatio).add(50));
+			} else if (dayRatio > 0.5) {
+				currentStockRecordMarker.centerXProperty().bind(this.widthProperty().multiply(dayRatio).subtract(50));
+			} else {
+				currentStockRecordMarker.centerXProperty().bind(this.widthProperty().multiply(dayRatio));
+			}
 
 			double priceRatio = this.getPriceRatio(currentStockRecord.getClosingPrice());
-			System.out.println(priceRatio);
-
-			currentStockRecordMarker.centerYProperty().bind(this.heightProperty().multiply(priceRatio));
-
+			if (priceRatio > 0.5) {
+				currentStockRecordMarker.centerYProperty().bind(this.heightProperty().multiply(priceRatio).subtract(50));
+			} else if (priceRatio < 0.5) {
+				currentStockRecordMarker.centerYProperty().bind(this.heightProperty().multiply(priceRatio).add(50));
+			} else {
+				currentStockRecordMarker.centerYProperty().bind(this.heightProperty().multiply(priceRatio));
+			}
+			
 			this.getChildren().add(currentStockRecordMarker);
 		}
 	}
@@ -263,7 +274,14 @@ public class StockPane extends Pane {
 	 * @return the ratio of the current price between the high and low prices
 	 */
 	private double getPriceRatio(double currentPrice) {
-		return (currentPrice - this.stockManagerModel.getMinimumClosingPrice())
+		return 1.0 - (currentPrice - this.stockManagerModel.getMinimumClosingPrice())
 				/ (this.stockManagerModel.getMaximumClosingPrice() - this.stockManagerModel.getMinimumClosingPrice());
+	}
+
+	private double getDayRatio(LocalDate currentDate) {
+		return ((double) (currentDate.toEpochDay()
+				- this.stockManagerModel.getFirstStockRecord().getDate().toEpochDay()))
+				/ ((double) this.stockManagerModel.getLastStockRecord().getDate().toEpochDay()
+						- this.stockManagerModel.getFirstStockRecord().getDate().toEpochDay());
 	}
 }
