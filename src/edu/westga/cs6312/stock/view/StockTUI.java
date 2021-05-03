@@ -44,6 +44,18 @@ public class StockTUI {
 	private int getUserInt(String message) {
 		int userInt = -1;
 
+		boolean validInput = false;
+		while (!validInput) {
+			System.out.print(message);
+			String userInput = this.keyboardScanner.nextLine();
+			try {
+				userInt = Integer.parseInt(userInput);
+				validInput = true;
+			} catch (NumberFormatException cannotParseInput) {
+				System.out.println("Invalid input. Please enter valid integer value.");
+			}
+		}
+
 		return userInt;
 	}
 
@@ -52,7 +64,35 @@ public class StockTUI {
 	 * loop.
 	 */
 	public void run() {
+		System.out.println("Welcome to the Stock Manager Console Application");
 
+		int userSelection = -1;
+
+		do {
+			this.displayMenu();
+			userSelection = this.getUserInt("Please make a selection: ");
+
+			switch (userSelection) {
+				case 1:
+					this.printSummaryData();
+					break;
+				case 2:
+					this.printStatisticalData();
+					break;
+				case 3:
+					this.printAllRecords();
+					break;
+				case 4:
+					System.out.println("Thank you for using the Stock Manager Console Application");
+					System.out.println("Goodbye");
+					break;
+				default:
+					System.out.println("That is not a valid menu option. Please select a value in the menu.");
+					break;
+			}
+			
+			System.out.println();
+		} while (userSelection != 4);
 	}
 
 	/**
