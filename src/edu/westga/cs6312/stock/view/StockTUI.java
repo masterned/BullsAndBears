@@ -66,13 +66,16 @@ public class StockTUI {
 	 * loop.
 	 */
 	public void run() {
+		System.out.println();
 		System.out.println("Welcome to the Stock Manager Console Application");
+		System.out.println();
 
 		int userSelection = -1;
 
 		do {
 			this.displayMenu();
 			userSelection = this.getUserInt("Please make a selection: ");
+			System.out.println();
 
 			switch (userSelection) {
 				case 1:
