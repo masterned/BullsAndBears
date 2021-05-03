@@ -123,9 +123,9 @@ public class StockTUI {
 	 */
 	private void printStatisticalData() {
 		System.out.println("Statistical Data");
-		System.out.printf("Maximum Closing Price: %.6f%n", this.stockManagerModel.getMaximumClosingPrice());
-		System.out.printf("Minimum Closing Price: %.6f%n", this.stockManagerModel.getMinimumClosingPrice());
-		System.out.printf("Average Closing Price: %.6f%n", this.stockManagerModel.getAverageClosingPrice());
+		System.out.printf("Highest Closing Price: $%7.2f%n", this.stockManagerModel.getMaximumClosingPrice());
+		System.out.printf("Lowest Closing Price:  $%7.2f%n", this.stockManagerModel.getMinimumClosingPrice());
+		System.out.printf("Average Closing Price: $%7.2f%n", this.stockManagerModel.getAverageClosingPrice());
 	}
 
 	/**

@@ -268,8 +268,6 @@ public class StockRecord {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Date: %s, Open: %.6f, High: %.6f, Low: %.6f, Close: %.6f, Adj Close: %.6f, Volume: %d",
-				this.date.toString(), this.openingPrice, this.highPrice, this.lowPrice, this.closingPrice,
-				this.adjustedClosingPrice, this.volume);
+		return String.format("Closed at $%.2f on %s", this.closingPrice, this.date.toString());
 	}
 }
