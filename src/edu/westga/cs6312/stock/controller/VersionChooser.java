@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import edu.westga.cs6312.stock.model.StockManager;
-import edu.westga.cs6312.stock.view.StockGUI;
 import edu.westga.cs6312.stock.view.StockTUI;
 
 /**

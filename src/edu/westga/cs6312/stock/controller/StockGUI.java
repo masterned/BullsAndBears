@@ -1,6 +1,7 @@
-package edu.westga.cs6312.stock.view;
+package edu.westga.cs6312.stock.controller;
 
 import edu.westga.cs6312.stock.model.StockManager;
+import edu.westga.cs6312.stock.view.StockPane;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
