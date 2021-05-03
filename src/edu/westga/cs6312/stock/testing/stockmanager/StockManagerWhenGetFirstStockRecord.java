@@ -38,7 +38,7 @@ public class StockManagerWhenGetFirstStockRecord {
 	 * should return the first StockRecord inserted.
 	 */
 	@Test
-	public void testGetSummaryDataOnStockManagerWithMultipleStockRecordsShouldReturnFirstInsertedRecord() {
+	public void testGetFirstStockRecordOnStockManagerWithMultipleStockRecordsShouldReturnFirstInsertedRecord() {
 		StockRecord expectedStockRecord = new StockRecord(LocalDate.parse("2020-07-10"), 22534.970703, 22563.679688,
 				22285.070313, 22290.810547, 22290.810547, 78800000);
 
