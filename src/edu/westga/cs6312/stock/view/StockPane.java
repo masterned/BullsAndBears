@@ -34,9 +34,16 @@ public class StockPane extends Pane {
 		this.setPrefSize(640, 480);
 
 		this.drawStockName();
+
+		this.drawDateTexts();
+		this.drawDateLines();
+
 		this.drawPriceTexts();
 		this.drawPriceLines();
-		this.drawDateTexts();
+
+		this.drawAllClosingPriceMarkers();
+
+		this.drawAverageStockPriceLine();
 	}
 
 	/**
@@ -56,7 +63,7 @@ public class StockPane extends Pane {
 	 */
 	private void drawDateTexts() {
 		Text firstDateText = new Text(this.formatDate(this.stockManagerModel.getFirstStockRecord().getDate()));
-		firstDateText.xProperty().set(100);
+		firstDateText.xProperty().set(25);
 		firstDateText.yProperty().bind(this.heightProperty().subtract(25));
 		firstDateText.setStroke(Color.BLACK);
 
@@ -71,6 +78,31 @@ public class StockPane extends Pane {
 		lastDateText.setStroke(Color.BLACK);
 
 		this.getChildren().addAll(firstDateText, middleDateText, lastDateText);
+	}
+
+	private void drawDateLines() {
+		Line firstDateLine = new Line();
+		firstDateLine.startXProperty().set(50);
+		firstDateLine.endXProperty().set(50);
+		firstDateLine.startYProperty().set(50);
+		firstDateLine.endYProperty().bind(this.heightProperty().subtract(50));
+		firstDateLine.setStroke(Color.BLACK);
+
+		Line middleDateLine = new Line();
+		middleDateLine.startXProperty().bind(this.widthProperty().multiply(0.5));
+		middleDateLine.endXProperty().bind(this.widthProperty().multiply(0.5));
+		middleDateLine.startYProperty().set(50);
+		middleDateLine.endYProperty().bind(this.heightProperty().subtract(50));
+		middleDateLine.setStroke(Color.BLACK);
+
+		Line lastDateLine = new Line();
+		lastDateLine.startXProperty().bind(this.widthProperty().subtract(50));
+		lastDateLine.endXProperty().bind(this.widthProperty().subtract(50));
+		lastDateLine.startYProperty().set(50);
+		lastDateLine.endYProperty().bind(this.heightProperty().subtract(50));
+		lastDateLine.setStroke(Color.BLACK);
+
+		this.getChildren().addAll(firstDateLine, middleDateLine, lastDateLine);
 	}
 
 	/**
@@ -123,6 +155,14 @@ public class StockPane extends Pane {
 		Line lowPriceLine = new Line();
 
 		this.getChildren().addAll(highPriceLine, highMidPriceLine, middlePriceLine, lowMidPriceLine, lowPriceLine);
+	}
+
+	private void drawAllClosingPriceMarkers() {
+
+	}
+
+	private void drawAverageStockPriceLine() {
+
 	}
 
 	/**
