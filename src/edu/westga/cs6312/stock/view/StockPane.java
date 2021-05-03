@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import edu.westga.cs6312.stock.model.StockManager;
+import edu.westga.cs6312.stock.model.StockRecord;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 
@@ -80,6 +82,9 @@ public class StockPane extends Pane {
 		this.getChildren().addAll(firstDateText, middleDateText, lastDateText);
 	}
 
+	/**
+	 * Draws the lines corresponding to each of the three dates.
+	 */
 	private void drawDateLines() {
 		Line firstDateLine = new Line();
 		firstDateLine.startXProperty().set(50);
@@ -117,17 +122,17 @@ public class StockPane extends Pane {
 		highPriceText.yProperty().set(50);
 		highPriceText.setStroke(Color.BLACK);
 
-		Text highMidPriceText = new Text(this.formatPrice(this.spacePriceLine(maximumPrice, minimumPrice, 0.75)));
+		Text highMidPriceText = new Text(this.formatPrice(this.spacePriceLine(0.75)));
 		highMidPriceText.xProperty().set(25);
 		highMidPriceText.yProperty().bind(this.heightProperty().multiply(0.25).add(25));
 		highMidPriceText.setStroke(Color.BLACK);
 
-		Text middlePriceText = new Text(this.formatPrice(this.spacePriceLine(maximumPrice, minimumPrice, 0.5)));
+		Text middlePriceText = new Text(this.formatPrice(this.spacePriceLine(0.5)));
 		middlePriceText.xProperty().set(25);
 		middlePriceText.yProperty().bind(this.heightProperty().multiply(0.5));
 		middlePriceText.setStroke(Color.BLACK);
 
-		Text lowMidPriceText = new Text(this.formatPrice(this.spacePriceLine(maximumPrice, minimumPrice, 0.25)));
+		Text lowMidPriceText = new Text(this.formatPrice(this.spacePriceLine(0.25)));
 		lowMidPriceText.xProperty().set(25);
 		lowMidPriceText.yProperty().bind(this.heightProperty().multiply(0.75).subtract(25));
 		lowMidPriceText.setStroke(Color.BLACK);
@@ -182,24 +187,52 @@ public class StockPane extends Pane {
 		this.getChildren().addAll(highPriceLine, highMidPriceLine, middlePriceLine, lowMidPriceLine, lowPriceLine);
 	}
 
+	/**
+	 * Draws red circles representing each of the closing prices of the StockRecords
+	 * in the StockManager.
+	 */
 	private void drawAllClosingPriceMarkers() {
+		for (StockRecord currentStockRecord : this.stockManagerModel.getAllStockRecords()) {
+			Circle currentStockRecordMarker = new Circle();
+			currentStockRecordMarker.setRadius(7);
+			currentStockRecordMarker.setStroke(Color.RED);
+			currentStockRecordMarker.setFill(Color.RED);
 
+			currentStockRecordMarker.centerXProperty().bind(this.widthProperty().divide(2));
+
+			double priceRatio = this.getPriceRatio(currentStockRecord.getClosingPrice());
+			System.out.println(priceRatio);
+
+			currentStockRecordMarker.centerYProperty().bind(this.heightProperty().multiply(priceRatio));
+
+			this.getChildren().add(currentStockRecordMarker);
+		}
 	}
 
+	/**
+	 * Draws the average closing price line across the chart in blue.
+	 */
 	private void drawAverageStockPriceLine() {
+		double averagePrice = this.stockManagerModel.getAverageClosingPrice();
+		Line averageStockPriceLine = new Line();
+		averageStockPriceLine.startXProperty().set(50);
+		averageStockPriceLine.endXProperty().bind(this.widthProperty().subtract(50));
+		averageStockPriceLine.startYProperty().bind(this.heightProperty().multiply(this.getPriceRatio(averagePrice)));
+		averageStockPriceLine.endYProperty().bind(this.heightProperty().multiply(this.getPriceRatio(averagePrice)));
+		averageStockPriceLine.setStroke(Color.BLUE);
 
+		this.getChildren().add(averageStockPriceLine);
 	}
 
 	/**
 	 * Helper method used to calculate equidistant prices for display
 	 * 
-	 * @param max   - highest price
-	 * @param min   - lowest price
 	 * @param ratio - the percentage (from 0.0 to 1.0) between of new value
 	 * @return the new value at the ratio between the min and max
 	 */
-	private double spacePriceLine(double max, double min, double ratio) {
-		return (max - min) * ratio + min;
+	private double spacePriceLine(double ratio) {
+		return (this.stockManagerModel.getMaximumClosingPrice() - this.stockManagerModel.getMinimumClosingPrice())
+				* ratio + this.stockManagerModel.getMinimumClosingPrice();
 	}
 
 	/**
@@ -220,5 +253,17 @@ public class StockPane extends Pane {
 	 */
 	private String formatDate(LocalDate dateToFormat) {
 		return dateToFormat.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+	}
+
+	/**
+	 * Calculates the ratio of the current closing price to place properly on the
+	 * display.
+	 * 
+	 * @param currentPrice - the price of the current StockRecord
+	 * @return the ratio of the current price between the high and low prices
+	 */
+	private double getPriceRatio(double currentPrice) {
+		return (currentPrice - this.stockManagerModel.getMinimumClosingPrice())
+				/ (this.stockManagerModel.getMaximumClosingPrice() - this.stockManagerModel.getMinimumClosingPrice());
 	}
 }
