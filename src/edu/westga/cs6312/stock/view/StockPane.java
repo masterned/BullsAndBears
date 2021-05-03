@@ -145,14 +145,39 @@ public class StockPane extends Pane {
 	 */
 	private void drawPriceLines() {
 		Line highPriceLine = new Line();
+		highPriceLine.startXProperty().set(50);
+		highPriceLine.endXProperty().bind(this.widthProperty().subtract(50));
+		highPriceLine.startYProperty().set(50);
+		highPriceLine.endYProperty().set(50);
+		highPriceLine.setStroke(Color.BLACK);
 
 		Line highMidPriceLine = new Line();
+		highMidPriceLine.startXProperty().set(50);
+		highMidPriceLine.endXProperty().bind(this.widthProperty().subtract(50));
+		highMidPriceLine.startYProperty().bind(this.heightProperty().multiply(0.25).add(25));
+		highMidPriceLine.endYProperty().bind(this.heightProperty().multiply(0.25).add(25));
+		highMidPriceLine.setStroke(Color.BLACK);
 
 		Line middlePriceLine = new Line();
+		middlePriceLine.startXProperty().set(50);
+		middlePriceLine.endXProperty().bind(this.widthProperty().subtract(50));
+		middlePriceLine.startYProperty().bind(this.heightProperty().multiply(0.5));
+		middlePriceLine.endYProperty().bind(this.heightProperty().multiply(0.5));
+		middlePriceLine.setStroke(Color.BLACK);
 
 		Line lowMidPriceLine = new Line();
+		lowMidPriceLine.startXProperty().set(50);
+		lowMidPriceLine.endXProperty().bind(this.widthProperty().subtract(50));
+		lowMidPriceLine.startYProperty().bind(this.heightProperty().multiply(0.75).subtract(25));
+		lowMidPriceLine.endYProperty().bind(this.heightProperty().multiply(0.75).subtract(25));
+		lowMidPriceLine.setStroke(Color.BLACK);
 
 		Line lowPriceLine = new Line();
+		lowPriceLine.startXProperty().set(50);
+		lowPriceLine.endXProperty().bind(this.widthProperty().subtract(50));
+		lowPriceLine.startYProperty().bind(this.heightProperty().subtract(50));
+		lowPriceLine.endYProperty().bind(this.heightProperty().subtract(50));
+		lowPriceLine.setStroke(Color.BLACK);
 
 		this.getChildren().addAll(highPriceLine, highMidPriceLine, middlePriceLine, lowMidPriceLine, lowPriceLine);
 	}
