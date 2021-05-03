@@ -3,6 +3,7 @@ package edu.westga.cs6312.stock.view;
 import java.util.Scanner;
 
 import edu.westga.cs6312.stock.model.StockManager;
+import edu.westga.cs6312.stock.model.StockRecord;
 
 /**
  * Provides a view to communicate with the user via text in the console.
@@ -90,7 +91,7 @@ public class StockTUI {
 					System.out.println("That is not a valid menu option. Please select a value in the menu.");
 					break;
 			}
-			
+
 			System.out.println();
 		} while (userSelection != 4);
 	}
@@ -99,20 +100,29 @@ public class StockTUI {
 	 * Prints the first, middle, and last record values in the StockManager.
 	 */
 	private void printSummaryData() {
-
+		System.out.println("Summary Data");
+		System.out.println(this.stockManagerModel.getFirstStockRecord());
+		System.out.println(this.stockManagerModel.getMiddleStockRecord());
+		System.out.println(this.stockManagerModel.getLastStockRecord());
 	}
 
 	/**
 	 * Prints the maximum, minimum, and average closing prices of the StockManager.
 	 */
 	private void printStatisticalData() {
-
+		System.out.println("Statistical Data");
+		System.out.println("Maximum Closing Price: " + this.stockManagerModel.getMaximumClosingPrice());
+		System.out.println("Minimum Closing Price: " + this.stockManagerModel.getMinimumClosingPrice());
+		System.out.println("Average Closing Price: " + this.stockManagerModel.getAverageClosingPrice());
 	}
 
 	/**
 	 * Prints all of the StockRecords in the StockManager.
 	 */
 	private void printAllRecords() {
-
+		System.out.println("All Records");
+		for (StockRecord currentStockRecord : this.stockManagerModel.getAllStockRecords()) {
+			System.out.println(currentStockRecord);
+		}
 	}
 }
