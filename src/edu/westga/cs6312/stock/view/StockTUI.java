@@ -19,8 +19,14 @@ public class StockTUI {
 	 * Creates a new Textual User Interface using the provided StockManager.
 	 * 
 	 * @param newStockManager - the StockManager to use as the primary model
+	 * @precondition newStockManager is not null
+	 * @throws IllegalArgumentException if newStockManager is null
 	 */
 	public StockTUI(StockManager newStockManager) {
+		if (newStockManager == null) {
+			throw new IllegalArgumentException("Invalid StockManager: cannot be null");
+		}
+		
 		this.stockManagerModel = newStockManager;
 		this.keyboardScanner = new Scanner(System.in);
 	}
