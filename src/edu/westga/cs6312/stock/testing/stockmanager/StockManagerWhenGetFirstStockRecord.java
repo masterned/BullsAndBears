@@ -3,7 +3,6 @@ package edu.westga.cs6312.stock.testing.stockmanager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
