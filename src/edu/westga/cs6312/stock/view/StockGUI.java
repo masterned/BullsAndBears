@@ -22,7 +22,7 @@ public class StockGUI extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) {
-		primaryStage.setTitle("CS6312 Stock Manager GUI Application");
+		primaryStage.setTitle("CS6312 - Stock Manager");
 
 		StockPane primaryPane = new StockPane(StockGUI.stockManagerModel);
 
