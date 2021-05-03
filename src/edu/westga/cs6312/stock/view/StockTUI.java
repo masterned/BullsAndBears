@@ -112,7 +112,7 @@ public class StockTUI {
 	 * Prints the first, middle, and last record values in the StockManager.
 	 */
 	private void printSummaryData() {
-		System.out.println("Summary Data");
+		System.out.println(this.stockManagerModel.getStockName());
 		System.out.println(this.stockManagerModel.getFirstStockRecord());
 		System.out.println(this.stockManagerModel.getMiddleStockRecord());
 		System.out.println(this.stockManagerModel.getLastStockRecord());
@@ -122,7 +122,7 @@ public class StockTUI {
 	 * Prints the maximum, minimum, and average closing prices of the StockManager.
 	 */
 	private void printStatisticalData() {
-		System.out.println("Statistical Data");
+		System.out.println(this.stockManagerModel.getStockName());
 		System.out.printf("Highest Closing Price: $%7.2f%n", this.stockManagerModel.getMaximumClosingPrice());
 		System.out.printf("Lowest Closing Price:  $%7.2f%n", this.stockManagerModel.getMinimumClosingPrice());
 		System.out.printf("Average Closing Price: $%7.2f%n", this.stockManagerModel.getAverageClosingPrice());
@@ -132,7 +132,7 @@ public class StockTUI {
 	 * Prints all of the StockRecords in the StockManager.
 	 */
 	private void printAllRecords() {
-		System.out.println("All Records");
+		System.out.println(this.stockManagerModel.getStockName());
 		for (StockRecord currentStockRecord : this.stockManagerModel.getAllStockRecords()) {
 			System.out.println(currentStockRecord);
 		}
