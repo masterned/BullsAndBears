@@ -44,7 +44,7 @@ public class StockPane extends Pane {
 	 */
 	private void drawStockName() {
 		Text stockNameText = new Text(this.stockManagerModel.getStockName());
-		stockNameText.xProperty().bind(this.widthProperty().divide(2).subtract(25));
+		stockNameText.xProperty().bind(this.widthProperty().multiply(0.5).subtract(25));
 		stockNameText.yProperty().bind(this.heightProperty().multiply(0).add(25));
 		stockNameText.setStroke(Color.BLACK);
 
@@ -56,10 +56,19 @@ public class StockPane extends Pane {
 	 */
 	private void drawDateTexts() {
 		Text firstDateText = new Text(this.formatDate(this.stockManagerModel.getFirstStockRecord().getDate()));
+		firstDateText.xProperty().set(100);
+		firstDateText.yProperty().bind(this.heightProperty().subtract(25));
+		firstDateText.setStroke(Color.BLACK);
 
 		Text middleDateText = new Text(this.formatDate(this.stockManagerModel.getMiddleStockRecord().getDate()));
+		middleDateText.xProperty().bind(this.widthProperty().multiply(0.5).subtract(25));
+		middleDateText.yProperty().bind(this.heightProperty().subtract(25));
+		middleDateText.setStroke(Color.BLACK);
 
 		Text lastDateText = new Text(this.formatDate(this.stockManagerModel.getLastStockRecord().getDate()));
+		lastDateText.xProperty().bind(this.widthProperty().subtract(100));
+		lastDateText.yProperty().bind(this.heightProperty().subtract(25));
+		lastDateText.setStroke(Color.BLACK);
 
 		this.getChildren().addAll(firstDateText, middleDateText, lastDateText);
 	}
