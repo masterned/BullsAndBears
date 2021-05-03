@@ -10,13 +10,13 @@ import java.util.ArrayList;
  * @version 2021-05-02
  */
 public class StockManager {
-	private ArrayList<StockRecord> dailyStockRecords;
+	private ArrayList<StockRecord> listOfStockRecords;
 
 	/**
 	 * Creates a new empty StockManager, instantiating its list of StockRecords.
 	 */
 	public StockManager() {
-		this.dailyStockRecords = new ArrayList<StockRecord>();
+		this.listOfStockRecords = new ArrayList<StockRecord>();
 	}
 
 	/**
@@ -29,68 +29,68 @@ public class StockManager {
 			throw new IllegalArgumentException("Invalid StockRecord: cannot be null");
 		}
 
-		this.dailyStockRecords.add(newStockRecord);
+		this.listOfStockRecords.add(newStockRecord);
 	}
 
 	/**
 	 * Gets the first StockRecord in the list of StockRecords
 	 * 
 	 * @return first StockRecord
-	 * @precondition dailyStockRecords has at least one record
-	 * @throws IllegalStateException if dailyStockRecords is empty
+	 * @precondition listOfStockRecords has at least one record
+	 * @throws IllegalStateException if listOfStockRecords is empty
 	 */
 	public StockRecord getFirstStockRecord() {
-		if (this.dailyStockRecords.size() < 1) {
+		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
 		}
 		
-		return this.dailyStockRecords.get(0);
+		return this.listOfStockRecords.get(0);
 	}
 	
 	/**
 	 * Gets the middle StockRecord in the list of StockRecords
 	 * 
 	 * @return first StockRecord
-	 * @precondition dailyStockRecords has at least one record
-	 * @throws IllegalStateException if dailyStockRecords is empty
+	 * @precondition listOfStockRecords has at least one record
+	 * @throws IllegalStateException if listOfStockRecords is empty
 	 */
 	public StockRecord getMiddleStockRecord() {
-		if (this.dailyStockRecords.size() < 1) {
+		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
 		}
 		
-		return this.dailyStockRecords.get(this.dailyStockRecords.size() / 2);
+		return this.listOfStockRecords.get(this.listOfStockRecords.size() / 2);
 	}
 	
 	/**
 	 * Gets the last StockRecord in the list of StockRecords
 	 * 
 	 * @return first StockRecord
-	 * @precondition dailyStockRecords has at least one record
-	 * @throws IllegalStateException if dailyStockRecords is empty
+	 * @precondition listOfStockRecords has at least one record
+	 * @throws IllegalStateException if listOfStockRecords is empty
 	 */
 	public StockRecord getLastStockRecord() {
-		if (this.dailyStockRecords.size() < 1) {
+		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
 		}
 		
-		return this.dailyStockRecords.get(this.dailyStockRecords.size() - 1);
+		return this.listOfStockRecords.get(this.listOfStockRecords.size() - 1);
 	}
 
 	/**
 	 * Finds the highest closing price in the list of daily StockRecords.
 	 * 
 	 * @return maximumClosingPrice
-	 * @precondition dailyStockRecords has at least one record
-	 * @throws IllegalStateException if dailyStockRecords is empty
+	 * @precondition listOfStockRecords has at least one record
+	 * @throws IllegalStateException if listOfStockRecords is empty
 	 */
 	public double getMaximumClosingPrice() {
-		if (this.dailyStockRecords.size() < 1) {
+		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain maximum closing price on empty list");
 		}
 
-		double maximumClosingPrice = this.dailyStockRecords.get(0).getClosingPrice();
-		for (StockRecord currentStockRecord : this.dailyStockRecords) {
+		double maximumClosingPrice = this.listOfStockRecords.get(0).getClosingPrice();
+		for (StockRecord currentStockRecord : this.listOfStockRecords) {
 			double currentClosingPrice = currentStockRecord.getClosingPrice();
 			if (currentClosingPrice > maximumClosingPrice) {
 				maximumClosingPrice = currentClosingPrice;
@@ -103,16 +103,16 @@ public class StockManager {
 	 * Finds the lowest closing price in the list of daily StockRecords.
 	 * 
 	 * @return minimumClosingPrice
-	 * @precondition dailyStockRecords has at least one record
-	 * @throws IllegalStateException if dailyStockRecords is empty
+	 * @precondition listOfStockRecords has at least one record
+	 * @throws IllegalStateException if listOfStockRecords is empty
 	 */
 	public double getMinimumClosingPrice() {
-		if (this.dailyStockRecords.size() < 1) {
+		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain minimum closing price on empty list");
 		}
 
-		double minimumClosingPrice = this.dailyStockRecords.get(0).getClosingPrice();
-		for (StockRecord currentStockRecord : this.dailyStockRecords) {
+		double minimumClosingPrice = this.listOfStockRecords.get(0).getClosingPrice();
+		for (StockRecord currentStockRecord : this.listOfStockRecords) {
 			double currentClosingPrice = currentStockRecord.getClosingPrice();
 			if (currentClosingPrice < minimumClosingPrice) {
 				minimumClosingPrice = currentClosingPrice;
@@ -125,20 +125,20 @@ public class StockManager {
 	 * Finds the average closing price in the list of daily StockRecords.
 	 * 
 	 * @return averageClosingPrice
-	 * @precondition dailyStockRecords has at least one record
-	 * @throws IllegalStateException if dailyStockRecords is empty
+	 * @precondition listOfStockRecords has at least one record
+	 * @throws IllegalStateException if listOfStockRecords is empty
 	 */
 	public double getAverageClosingPrice() {
-		if (this.dailyStockRecords.size() < 1) {
+		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain average closing price on empty list");
 		}
 
 		double totalClosingPrice = 0.0;
-		for (StockRecord currentStockRecord : this.dailyStockRecords) {
+		for (StockRecord currentStockRecord : this.listOfStockRecords) {
 			totalClosingPrice += currentStockRecord.getClosingPrice();
 		}
 
-		return totalClosingPrice / this.dailyStockRecords.size();
+		return totalClosingPrice / this.listOfStockRecords.size();
 	}
 
 	/**
@@ -151,6 +151,6 @@ public class StockManager {
 	 * @return the list all of the StockRecords
 	 */
 	public ArrayList<StockRecord> getAllStockRecords() {
-		return this.dailyStockRecords;
+		return this.listOfStockRecords;
 	}
 }
