@@ -27,7 +27,7 @@ public class StockManagerWhenGetFirstStockRecord {
 		StockRecord expectedStockRecord = new StockRecord(LocalDate.parse("2020-06-09"), 23135.789063, 23185.849609,
 				22933.140625, 23091.029297, 23091.029297, 91500000);
 
-		StockManager testStockManager = new StockManager();
+		StockManager testStockManager = new StockManager("Nikkei");
 		testStockManager.addStockRecord(expectedStockRecord);
 
 		assertEquals(expectedStockRecord, testStockManager.getFirstStockRecord());
@@ -42,7 +42,7 @@ public class StockManagerWhenGetFirstStockRecord {
 		StockRecord expectedStockRecord = new StockRecord(LocalDate.parse("2020-07-10"), 22534.970703, 22563.679688,
 				22285.070313, 22290.810547, 22290.810547, 78800000);
 
-		StockManager testStockManager = new StockManager();
+		StockManager testStockManager = new StockManager("Nikkei");
 		testStockManager.addStockRecord(expectedStockRecord);
 		testStockManager.addStockRecord(new StockRecord(LocalDate.parse("2020-08-03"), 21947.580078, 22214.589844,
 				21919.830078, 22195.380859, 22195.380859, 84000000));

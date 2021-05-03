@@ -30,7 +30,7 @@ public class FileInteractor {
 	 *                               found
 	 */
 	public static StockManager readData(String fileName) throws FileNotFoundException {
-		StockManager generatedStockManager = new StockManager();
+		StockManager generatedStockManager = new StockManager(fileName);
 
 		File dataFile = new File(fileName);
 		Scanner dataFileReader = new Scanner(dataFile);

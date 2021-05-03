@@ -24,7 +24,7 @@ public class StockManagerWhenGetMaximumClosingPrice {
 	 */
 	@Test
 	public void testGetMaximumClosingPriceOnStockManagerWithOneRecordShouldReturnClosingPriceOfThatRecord() {
-		StockManager testStockManager = new StockManager();
+		StockManager testStockManager = new StockManager("Nikkei");
 		testStockManager.addStockRecord(new StockRecord(LocalDate.parse("2020-06-09"), 23135.789063, 23185.849609,
 				22933.140625, 23091.029297, 23091.029297, 91500000));
 
@@ -37,7 +37,7 @@ public class StockManagerWhenGetMaximumClosingPrice {
 	 */
 	@Test
 	public void testGetMaximumClosingPriceOnStockManagerWithMultipleRecordsShouldReturnHighestClosingPrice() {
-		StockManager testStockManager = new StockManager();
+		StockManager testStockManager = new StockManager("Nikkei");
 		testStockManager.addStockRecord(new StockRecord(LocalDate.parse("2020-06-09"), 23135.789063, 23185.849609,
 				22933.140625, 23091.029297, 23091.029297, 91500000));
 		testStockManager.addStockRecord(new StockRecord(LocalDate.parse("2021-04-01"), 29441.910156, 29585.460938,

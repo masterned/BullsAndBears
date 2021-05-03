@@ -10,13 +10,39 @@ import java.util.ArrayList;
  * @version 2021-05-02
  */
 public class StockManager {
+	private String stockName;
 	private ArrayList<StockRecord> listOfStockRecords;
 
 	/**
 	 * Creates a new empty StockManager, instantiating its list of StockRecords.
+	 * 
+	 * @param newStockName - the name of the stock being managed
 	 */
-	public StockManager() {
+	public StockManager(String newStockName) {
+		this.stockName = newStockName;
 		this.listOfStockRecords = new ArrayList<StockRecord>();
+	}
+
+	/**
+	 * Sets the stock's name to the given value
+	 * 
+	 * @param newStockName - the new name for the stock
+	 */
+	public void setStockName(String newStockName) {
+		if (newStockName == null) {
+			throw new IllegalArgumentException("Invalid stock name: cannot be null");
+		}
+
+		this.stockName = newStockName;
+	}
+
+	/**
+	 * Gets the name of the stock being managed.
+	 * 
+	 * @return the name of the stock being managed
+	 */
+	public String getStockName() {
+		return this.stockName;
 	}
 
 	/**
@@ -43,10 +69,10 @@ public class StockManager {
 		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
 		}
-		
+
 		return this.listOfStockRecords.get(0);
 	}
-	
+
 	/**
 	 * Gets the middle StockRecord in the list of StockRecords
 	 * 
@@ -58,10 +84,10 @@ public class StockManager {
 		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
 		}
-		
+
 		return this.listOfStockRecords.get(this.listOfStockRecords.size() / 2);
 	}
-	
+
 	/**
 	 * Gets the last StockRecord in the list of StockRecords
 	 * 
@@ -73,7 +99,7 @@ public class StockManager {
 		if (this.listOfStockRecords.size() < 1) {
 			throw new IllegalStateException("Cannot obtain a StockRecord from an empty list");
 		}
-		
+
 		return this.listOfStockRecords.get(this.listOfStockRecords.size() - 1);
 	}
 

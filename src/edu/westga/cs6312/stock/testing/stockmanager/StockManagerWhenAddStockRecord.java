@@ -24,7 +24,7 @@ public class StockManagerWhenAddStockRecord {
 	 */
 	@Test
 	public void testAddStockRecordToEmptyListShouldAddRecordToList() {
-		StockManager testStockManager = new StockManager();
+		StockManager testStockManager = new StockManager("Nikkei");
 		StockRecord testStockRecord = new StockRecord(LocalDate.parse("2020-05-07"), 19468.519531, 19720.869141,
 				19448.929688, 19674.769531, 19674.769531, 82900000);
 
@@ -42,7 +42,7 @@ public class StockManagerWhenAddStockRecord {
 	 */
 	@Test
 	public void testAddStockRecordOnStockManagerWithAListWithValuesShouldAppendNewRecord() {
-		StockManager testStockManager = new StockManager();
+		StockManager testStockManager = new StockManager("Nikkei");
 		StockRecord firstTestStockRecord = new StockRecord(LocalDate.parse("2020-05-11"), 20333.730469, 20534.880859,
 				20285.039063, 20390.660156, 20390.660156, 76200000);
 		StockRecord secondTestStockRecord = new StockRecord(LocalDate.parse("2020-06-24"), 22541.009766, 22663.289063,
