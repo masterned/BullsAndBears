@@ -12,7 +12,7 @@ import edu.westga.cs6312.stock.model.StockRecord;
 
 /**
  * Provides unit tests to verify the expected behavior of StockRecord's
- * addStockRecord method.
+ * addStockRecord and getAllStockRecords methods.
  * 
  * @author Spencer Dent
  * @version 2021-05-02
