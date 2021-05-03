@@ -22,6 +22,7 @@ public class StockTUI {
 	 */
 	public StockTUI(StockManager newStockManager) {
 		this.stockManagerModel = newStockManager;
+		this.keyboardScanner = new Scanner(System.in);
 	}
 
 	/**
@@ -94,6 +95,8 @@ public class StockTUI {
 
 			System.out.println();
 		} while (userSelection != 4);
+		
+		this.keyboardScanner.close();
 	}
 
 	/**
