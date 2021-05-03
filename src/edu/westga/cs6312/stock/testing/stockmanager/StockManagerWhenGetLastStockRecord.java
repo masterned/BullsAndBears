@@ -34,7 +34,7 @@ public class StockManagerWhenGetLastStockRecord {
 	}
 
 	/**
-	 * Tests getFirstStockRecord on a StockManager with multiple StockRecords. It
+	 * Tests getLastStockRecord on a StockManager with multiple StockRecords. It
 	 * should return the last StockRecord inserted.
 	 */
 	@Test
